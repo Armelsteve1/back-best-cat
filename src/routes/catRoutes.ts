@@ -1,6 +1,11 @@
 // src/routes/catRoutes.ts
 import { Router } from 'express';
-import { getCats, voteCat, getVotes, getVotedCats } from '../controllers/catController';
+import {
+  getCats,
+  voteCat,
+  getVotes,
+  getVotedCats,
+} from '../controllers/catController';
 import { asyncHandler } from '../middleware/asyncHandler';
 
 const router = Router();
