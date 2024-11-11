@@ -2,7 +2,16 @@ import { Request, Response } from 'express';
 import axios from 'axios';
 import { db } from '../config/firebaseClient';
 import { Cat } from '../models/cat';
-import { collection, getDocs, doc, getDoc, updateDoc, setDoc, query, where } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  updateDoc,
+  setDoc,
+  query,
+  where,
+} from 'firebase/firestore';
 
 export const loadCats = async (): Promise<void> => {
   try {
@@ -14,7 +23,7 @@ export const loadCats = async (): Promise<void> => {
       const cats = response.data.images.map((cat: any) => ({
         id: cat.id,
         name: cat.url,
-        score: 0
+        score: 0,
       }));
 
       for (const cat of cats) {
@@ -29,7 +38,10 @@ export const loadCats = async (): Promise<void> => {
   }
 };
 
-export const getVotedCats = async (req: Request, res: Response): Promise<Response> => {
+export const getVotedCats = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     const catsCollection = collection(db, 'cats');
     const votedCatsQuery = query(catsCollection, where('score', '>', 0));
@@ -41,7 +53,10 @@ export const getVotedCats = async (req: Request, res: Response): Promise<Respons
   }
 };
 
-export const getCats = async (req: Request, res: Response): Promise<Response> => {
+export const getCats = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     const catsCollection = collection(db, 'cats');
     const snapshot = await getDocs(catsCollection);
@@ -52,7 +67,10 @@ export const getCats = async (req: Request, res: Response): Promise<Response> =>
   }
 };
 
-export const voteCat = async (req: Request, res: Response): Promise<Response> => {
+export const voteCat = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     const { id } = req.params;
     const catRef = doc(db, 'cats', id);
@@ -72,7 +90,10 @@ export const voteCat = async (req: Request, res: Response): Promise<Response> =>
   }
 };
 
-export const getVotes = async (req: Request, res: Response): Promise<Response> => {
+export const getVotes = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     const { id } = req.params;
     const catRef = doc(db, 'cats', id);

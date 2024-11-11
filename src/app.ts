@@ -13,4 +13,3 @@ app.use(express.json());
 app.use('/api', catRoutes);
 
 export default app;
-
