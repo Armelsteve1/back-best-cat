@@ -1,4 +1,3 @@
-// src/routes/catRoutes.ts
 import { Router } from 'express';
 import {
   getCats,
