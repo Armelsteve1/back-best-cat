@@ -14,13 +14,14 @@ describe('Cat Routes', () => {
   });
 
   it('POST /api/cats/:id/vote - should allow voting for a cat', async () => {
-    const response = await request(app).post('/api/cats/1/vote');
+    const response = await request(app).post('/api/cats/1dp/vote');
     expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty('message', 'Vote counted');
+    expect(response.body).toHaveProperty('id', '1dp');
+    expect(response.body).toHaveProperty('score');
   });
 
   it('GET /api/cats/:id/votes - should return votes for a specific cat', async () => {
-    const response = await request(app).get('/api/cats/1/votes');
+    const response = await request(app).get('/api/cats/1dp/votes');
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('votes');
   });
